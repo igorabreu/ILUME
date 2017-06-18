@@ -1,6 +1,5 @@
 
 int RELAY[] = {2,3,4,5,6,7,8,9};
-int value;
 
 #define RELAY1  RELAY[0] 
 #define RELAY2  RELAY[1] 
@@ -31,29 +30,25 @@ void loop(){
 }
 
 void blinkLamps(){
-while (Serial.available()){
- 
-   int value = Serial.read();
-
-      if(value){
+  while (Serial.available()){
+    int value = Serial.read();
+    if(value){
       unsigned long currentMillis = millis();
       if (currentMillis - previousMillis >= interval) {
-      previousMillis = currentMillis;
-      for(int i=0; i<8; i++){
-      digitalWrite(RELAY[i], LOW);
-      delay(25);
-      digitalWrite(RELAY[i], HIGH);
-      delay(25);
-      }
-      }else{
-      for(int i=0; i<8; i++){
-      digitalWrite(RELAY[i], LOW);
+        previousMillis = currentMillis;
+        for(int i=0; i<8; i++){
+          digitalWrite(RELAY[i], LOW);
+          delay(25);
+          digitalWrite(RELAY[i], HIGH);
+          delay(25);
         }
-       }
+      }else{
+        for(int i=0; i<8; i++){
+          digitalWrite(RELAY[i], LOW);
+        }
+      }
     }
-
   }
-
 }
 
 
